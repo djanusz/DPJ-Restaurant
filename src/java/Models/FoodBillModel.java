@@ -23,7 +23,7 @@ public class FoodBillModel {
     private double grandTotal;
 
     public FoodBillModel(List<String> itemList) {
-        
+        this.itemList = itemList;
     }
 
     public List<String> getItemList() {
@@ -156,16 +156,16 @@ public class FoodBillModel {
         return true; 
     }
     
-    public static void main(String[] args) {
-        List<String> items = new ArrayList<String>();
-        items.add("Steak");
-        items.add("Beer");
+//    public static void main(String[] args) {
+//        List<String> items = new ArrayList<String>();
+//        items.add("Steak");
+//        items.add("Beer");
+//        
+//        FoodBillModel bill = new FoodBillModel(items);
+//        double subTot =  bill.getSubtotal();
+//        System.out.println(subTot);
         
-        FoodBillModel bill = new FoodBillModel(items);
-        double subTot =  bill.getSubtotal();
-        System.out.println(subTot);
         
-        
-    }
+//    }
     
 }

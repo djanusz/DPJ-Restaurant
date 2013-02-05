@@ -61,7 +61,7 @@
                 Please select <u>one</u> side dish.
                 <br>
                 &nbsp;&nbsp;
-                <input type="radio" name="side" value="Mashed"> Mashed Potatos<br>
+                <input type="radio" name="side" value="Mashed"> Mashed Potatoes<br>
                 &nbsp;&nbsp;
                 <input type="radio" name="side" value="Baked" checked> Baked Potato<br>
                 &nbsp;&nbsp;
