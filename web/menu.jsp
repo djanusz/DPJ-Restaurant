@@ -39,7 +39,7 @@
                 <input type="radio" name="firstCourse" value="Potato"> Potato
                 <br>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="radio" name="firstCourse" value="Tomato" > Tomato
+                <input type="radio" name="Course" value="Tomato" > Tomato
                 <br>
                 
                 <br>
