@@ -15,6 +15,8 @@ public class FoodItemModel {
 
     private double price;
     private final Map<String, Double> items = new HashMap<String, Double>();
+    final String NPE_MSG = "No menu item passed to FoodItemModel.";
+    final String IAE_MSG = "Item string not found.";
 
     public FoodItemModel() {
         items.put("Steak", 15.00);
@@ -35,7 +37,13 @@ public class FoodItemModel {
     }
 
     public double getPrice(String item) {
+        try {
         price = items.get(item);
+        } catch(NullPointerException npe) {
+            System.out.println(NPE_MSG);
+        } catch(IllegalArgumentException iae) {
+            System.out.println(IAE_MSG);
+        }
         return price;
     }
 

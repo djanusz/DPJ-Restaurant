@@ -21,6 +21,9 @@ public class FoodBillModel {
     private double total;
     private double suggestedTip;
     private double grandTotal;
+    private final double SALES_TAX = 0.055;
+    private final double SUGGESTED_GRATUITY_PERCENTAGE = 0.15;
+    
 
     public FoodBillModel(List<String> itemList) {
         this.itemList = itemList;
@@ -62,7 +65,7 @@ public class FoodBillModel {
     }
 
     public double getTax(double subtotal) {
-        tax = subtotal * 0.055;
+        tax = subtotal * SALES_TAX;
         return tax;
     }
 
@@ -80,7 +83,7 @@ public class FoodBillModel {
     }
 
     public double getSuggestedTip(double total) {
-        suggestedTip = total * 0.15;
+        suggestedTip = total * SUGGESTED_GRATUITY_PERCENTAGE;
         return suggestedTip;
     }
 
