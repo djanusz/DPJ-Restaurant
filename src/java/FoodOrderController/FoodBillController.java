@@ -43,16 +43,19 @@ public class FoodBillController extends HttpServlet {
         
         FoodBillModel bill = new FoodBillModel(items);
         double subtotal = bill.getSubtotal();
-        double tax = bill.getTax(subtotal);
-        double total = bill.getTotal(subtotal, tax);
-        double tip = bill.getSuggestedTip(total);
-        double grandTotal = bill.getGrandTotal(total, tip);
+        double tax = bill.getTax();
+        double total = bill.getTotal();
+        double tip = bill.getSuggestedTip();
+        double grandTotal = bill.getGrandTotal();
+        List<String> lineItems = bill.getLineItems();
         
         request.setAttribute("subtotal", subtotal);
         request.setAttribute("tax", tax);
         request.setAttribute("total", total);
         request.setAttribute("tip", tip);
         request.setAttribute("grandTotal", grandTotal);
+        request.setAttribute("lineItems", lineItems);
+
         
 //        String mainCourse = request.getParameter("mainCourse");
 //        String firstCourse = request.getParameter("firstCourse");

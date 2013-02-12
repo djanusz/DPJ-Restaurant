@@ -4,6 +4,8 @@
     Author     : David
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,6 +16,18 @@
     <body>
         <form>
             <div>
+                <h1>Order Summary</h1>
+                <% 
+                    Object lineItems = request.getAttribute("lineItems");
+                    List<String> lineItemList = new ArrayList<String>();
+                    if (lineItems != null){
+                      lineItemList = (ArrayList<String>)lineItems; 
+                    }
+                    for (String s : lineItemList) {
+                        out.println("<h2>" + s + "</h2><br>");
+                    }
+                %>
+                <hr>
                 <h1>sub-Total: ${subtotal}</h1>
                 <h1>Tax: ${tax}</h1>
                 <hr>

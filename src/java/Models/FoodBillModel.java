@@ -12,8 +12,9 @@ import java.util.List;
  * @author David
  */
 public class FoodBillModel {
-    private FoodItemModel item = new FoodItemModel();
-    private List<String> itemList = new ArrayList<String>();
+    private FoodItemModel item;
+    private List<String> itemList;
+    private List<String> lineItems;
     private String itemName;
     private double itemPrice;
     private double subtotal;
@@ -26,77 +27,91 @@ public class FoodBillModel {
     
 
     public FoodBillModel(List<String> itemList) {
+        item = new FoodItemModel();
+        if (itemList.isEmpty()) {
+            throw new NullPointerException("No items passed from servlet.");
+        }
         this.itemList = itemList;
     }
 
-    public List<String> getItemList() {
+    private List<String> getItemList() {
         return itemList;
     }
 
-    public void setItemList(List<String> itemList) {
+    private void setItemList(List<String> itemList) {
         this.itemList = itemList;
     }
 
-    public String getItemName() {
+    private String getItemName() {
         return itemName;
     }
 
-    public void setItemName(String itemName) {
+    private void setItemName(String itemName) {
         this.itemName = itemName;
     }
 
-    public double getItemPrice(String itemName) {
+    private double getItemPrice(String itemName) {
         return itemPrice;
     }
 
-    public void setItemPrice(double itemPrice) {
+    private void setItemPrice(double itemPrice) {
         this.itemPrice = itemPrice;
     }
 
-    public double getSubtotal() {
+    public List<String> getLineItems() {
+        lineItems = new ArrayList();
         for (String s: itemList) {
+            lineItems.add(s + " . . . " + item.getPrice(s));
+        }
+        return lineItems;
+    }
+    
+    public double getSubtotal() {
+        subtotal = 0;
+        for (String s: itemList) {
+            
             subtotal = subtotal + item.getPrice(s);
         }
         return subtotal;
     }
 
-    public void setSubtotal(double subtotal) {
+    private void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
 
-    public double getTax(double subtotal) {
-        tax = subtotal * SALES_TAX;
+    public double getTax() {
+        tax = getSubtotal() * SALES_TAX;
         return tax;
     }
 
-    public void setTax(double tax) {
+    private void setTax(double tax) {
         this.tax = tax;
     }
 
-    public double getTotal(double subtotal, double tax) {
-        total = subtotal + tax;
+    public double getTotal() {
+        total = getSubtotal() + getTax();
         return total;
     }
 
-    public void setTotal(double total) {
+    private void setTotal(double total) {
         this.total = total;
     }
 
-    public double getSuggestedTip(double total) {
-        suggestedTip = total * SUGGESTED_GRATUITY_PERCENTAGE;
+    public double getSuggestedTip() {
+        suggestedTip = getTotal() * SUGGESTED_GRATUITY_PERCENTAGE;
         return suggestedTip;
     }
 
-    public void setSuggestedTip(double suggestedTip) {
+    private void setSuggestedTip(double suggestedTip) {
         this.suggestedTip = suggestedTip;
     }
 
-    public double getGrandTotal(double total, double suggestedTip) {
-        grandTotal = total + suggestedTip;
+    public double getGrandTotal() {
+        grandTotal = getTotal() + getSuggestedTip();
         return grandTotal;
     }
 
-    public void setGrandTotal(double grandTotal) {
+    private void setGrandTotal(double grandTotal) {
         this.grandTotal = grandTotal;
     }
 
