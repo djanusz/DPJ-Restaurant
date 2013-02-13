@@ -1,15 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Models;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author David
+ * Description: This class is responsible for methods and fields pertaining to 
+ * the food bill. It is given data from the FoodBillController and requests
+ * data from the FoodItemClass. 
+ * 
+ * @author David Janusz
  */
 public class FoodBillModel {
     private FoodItemModel item;
@@ -24,16 +25,26 @@ public class FoodBillModel {
     private double grandTotal;
     private final double SALES_TAX = 0.055;
     private final double SUGGESTED_GRATUITY_PERCENTAGE = 0.15;
-    
+    private final String NPE_MSG = "No items passed from servlet.";
 
+    /**
+     * FoodBillModel constructor
+     * @param itemList Is the list of items selected by the user. These items 
+     * must match those found in the FoodItemModel class.
+     */
     public FoodBillModel(List<String> itemList) {
         item = new FoodItemModel();
         if (itemList.isEmpty()) {
-            throw new NullPointerException("No items passed from servlet.");
+            throw new NullPointerException(NPE_MSG);
         }
         this.itemList = itemList;
     }
 
+    private double roundTwoDecimals(double d) {
+            DecimalFormat twoDForm = new DecimalFormat("#.##");
+        return Double.valueOf(twoDForm.format(d));
+    }
+    
     private List<String> getItemList() {
         return itemList;
     }
@@ -58,57 +69,81 @@ public class FoodBillModel {
         this.itemPrice = itemPrice;
     }
 
+    /**
+     * Gets a list of line items for display on bill.
+     * @return
+     */
     public List<String> getLineItems() {
         lineItems = new ArrayList();
         for (String s: itemList) {
-            lineItems.add(s + " . . . " + item.getPrice(s));
+            lineItems.add(s + " . . . $" + roundTwoDecimals(item.getPrice(s)));
         }
         return lineItems;
     }
     
+    /**
+     *Gets the subtotal of line items
+     * @return
+     */
     public double getSubtotal() {
         subtotal = 0;
         for (String s: itemList) {
             
             subtotal = subtotal + item.getPrice(s);
         }
-        return subtotal;
+        return roundTwoDecimals(subtotal);
     }
 
     private void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
     }
 
+    /**
+     * Gets the amount of sales tax for the bill.
+     * @return
+     */
     public double getTax() {
         tax = getSubtotal() * SALES_TAX;
-        return tax;
+        return roundTwoDecimals(tax);
     }
 
     private void setTax(double tax) {
         this.tax = tax;
     }
 
+    /**
+     * Gets the bill total.
+     * @return
+     */
     public double getTotal() {
         total = getSubtotal() + getTax();
-        return total;
+        return roundTwoDecimals(total);
     }
 
     private void setTotal(double total) {
         this.total = total;
     }
 
+    /**
+     * Gets the suggested tip based on 15% gratuity.
+     * @return
+     */
     public double getSuggestedTip() {
         suggestedTip = getTotal() * SUGGESTED_GRATUITY_PERCENTAGE;
-        return suggestedTip;
+        return roundTwoDecimals(suggestedTip);
     }
 
     private void setSuggestedTip(double suggestedTip) {
         this.suggestedTip = suggestedTip;
     }
 
+    /**
+     * Gets the grand total of the bill.
+     * @return
+     */
     public double getGrandTotal() {
         grandTotal = getTotal() + getSuggestedTip();
-        return grandTotal;
+        return roundTwoDecimals(grandTotal);
     }
 
     private void setGrandTotal(double grandTotal) {

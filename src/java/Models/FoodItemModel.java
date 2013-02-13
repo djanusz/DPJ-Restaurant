@@ -1,23 +1,23 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Models;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
- * @author David
+ * Description: This class is responsible for the food item data. 
+ * @author David Janusz
  */
 public class FoodItemModel {
 
     private double price;
     private final Map<String, Double> items = new HashMap<String, Double>();
-    final String NPE_MSG = "No menu item passed to FoodItemModel.";
-    final String IAE_MSG = "Item string not found.";
+    private final String NPE_MSG = "No menu item passed to FoodItemModel.";
+    private final String IAE_MSG = "Item string not found.";
 
+    /**
+     * FoodItemModel constructor that fills the HashMap with menu items.
+     */
     public FoodItemModel() {
         items.put("Steak", 15.00);
         items.put("Lobster", 20.00);
@@ -36,6 +36,11 @@ public class FoodItemModel {
         items.put("Soda",2.25);
     }
 
+    /**
+     * Gets the price from the HashMap.
+     * @param item is a food item from he HashMap
+     * @return price
+     */
     public double getPrice(String item) {
         try {
         price = items.get(item);

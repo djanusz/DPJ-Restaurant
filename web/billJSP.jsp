@@ -28,12 +28,12 @@
                     }
                 %>
                 <hr>
-                <h1>sub-Total: ${subtotal}</h1>
-                <h1>Tax: ${tax}</h1>
+                <h1>sub-Total: $${subtotal}</h1>
+                <h1>Tax: $${tax}</h1>
                 <hr>
-                <h1>Total ${total}</h1><br><br>
-                <h1>Suggested Tip: ${tip}</h1><br><br>
-                <h1 color="Red"><b>Grand-Total: ${grandTotal}<b></h1>
+                <h1>Total: $${total}</h1><br><br>
+                <h1>Suggested Tip: $${tip}</h1><br><br>
+                <h1 color="Red"><b>Grand-Total: $${grandTotal}<b></h1>
             </div>
          </form>
      </body>

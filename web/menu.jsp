@@ -1,7 +1,7 @@
 <%-- 
     Document   : menu
     Created on : Feb 4, 2013, 12:01:47 PM
-    Author     : David
+    Author     : David Janusz
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -46,10 +46,12 @@
                 &nbsp;&nbsp;
                 <u>Salads</u><br>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="radio" name="firstCourse" value="House" checked> House Salad
+                <input type="radio" name="firstCourse" value="House" checked> 
+                House Salad
                 <br>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="radio" name="firstCourse" value="Cesar"> Cesar Salad
+                <input type="radio" name="firstCourse" value="Cesar"> 
+                Cesar Salad
                 <br>
                
             </div>
@@ -61,11 +63,14 @@
                 Please select <u>one</u> side dish.
                 <br>
                 &nbsp;&nbsp;
-                <input type="radio" name="side" value="Mashed"> Mashed Potatoes<br>
+                <input type="radio" name="side" value="Mashed"> 
+                Mashed Potatoes<br>
                 &nbsp;&nbsp;
-                <input type="radio" name="side" value="Baked" checked> Baked Potato<br>
+                <input type="radio" name="side" value="Baked" checked> 
+                Baked Potato<br>
                 &nbsp;&nbsp;
-                <input type="radio" name="side" value="Vegetables"> Steamed Vegetables<br>
+                <input type="radio" name="side" value="Vegetables"> 
+                Steamed Vegetables<br>
             </div>
             <br>
             <hr>
@@ -96,7 +101,8 @@
             </div>
             <br>
             <hr>
-            <input id="menuSubmit" name="menuSubmit" type="submit" value="Submit">
+            <input id="menuSubmit" name="menuSubmit" type="submit" 
+                   value="Submit">
         </form>    
     </body>
 </html>
